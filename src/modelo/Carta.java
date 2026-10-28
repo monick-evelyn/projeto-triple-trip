@@ -3,10 +3,10 @@ package modelo;
 public class Carta {
 	private String nome;
 	private String tipo;
-	private int lado1; //cima
-	private int lado2; //direita
-	private int lado3; //baixo
-	private int lado4; //esquerda
+	private int lado1; // cima
+	private int lado2; // direita
+	private int lado3; // baixo
+	private int lado4; // esquerda
 
 	public Carta(String nome, int lado1, int lado2, int lado3, int lado4) {
 		this.nome = nome;
@@ -17,20 +17,17 @@ public class Carta {
 		this.lado2 = lado2;
 		this.lado3 = lado3;
 		this.lado4 = lado4;
-		this.tipo="";
+		this.tipo = "";
 	}
-	
+
 	public int getLado(Direcao direcao) {
-		if(direcao==Direcao.CIMA) {
+		if (direcao == Direcao.CIMA) {
 			return lado1;
-		}
-		else if(direcao==Direcao.DIREITA) {
+		} else if (direcao == Direcao.DIREITA) {
 			return lado2;
-		}
-		else if(direcao==Direcao.BAIXO) {
+		} else if (direcao == Direcao.BAIXO) {
 			return lado3;
-		}
-		else if(direcao==Direcao.ESQUERDA) {
+		} else if (direcao == Direcao.ESQUERDA) {
 			return lado4;
 		}
 		throw new IllegalArgumentException("ERRO: Não existe um lado para essa direção");
@@ -43,7 +40,5 @@ public class Carta {
 	public String getTipo() {
 		return tipo;
 	}
-
-
 
 }
