@@ -16,7 +16,6 @@ public class LeitorCSV {
 
 	public static List<Carta> ler(String caminho) throws FileNotFoundException {
 		String linha;
-		String csvSeparador = ";";
 
 		List<String> linhas = lerLinhas(caminho);
 		List<Carta> cartas = new ArrayList<>();
