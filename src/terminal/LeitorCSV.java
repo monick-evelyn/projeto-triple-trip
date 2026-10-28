@@ -30,6 +30,7 @@ public class LeitorCSV {
 				contador++;
 			} catch (RuntimeException e) {
 				System.out.println("Aviso: linha " + (contador) + " ignorada (" + e.getMessage() + ")");
+				contador++;
 			}
 		}
 		
@@ -74,7 +75,7 @@ public class LeitorCSV {
 			String[] chaveValor = par.split(":");
 
 			if (chaveValor.length != 2) {
-				throw new IllegalArgumentException("lado não está no padrão detectável: " + par);
+				throw new IllegalArgumentException("Lado não está no padrão detectável: " + par);
 			}
 
 			int valor = converterValor(chaveValor[1]);
@@ -97,7 +98,7 @@ public class LeitorCSV {
 				break;
 
 			default:
-				throw new IllegalArgumentException("lado desconhecido: " + chaveValor[0]);
+				throw new IllegalArgumentException("Lado desconhecido: " + chaveValor[0]);
 			}
 		}
 
