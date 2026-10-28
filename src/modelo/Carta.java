@@ -8,7 +8,7 @@ public class Carta {
 	private int lado3; // baixo
 	private int lado4; // esquerda
 
-	public Carta(String nome, int lado1, int lado2, int lado3, int lado4) {
+	public Carta(String nome, int lado1, int lado2, int lado3, int lado4, String tipo) {
 		this.nome = nome;
 		if (lado1 < 0 || lado1 > 10 || lado2 < 0 || lado2 > 10 || lado3 < 0 || lado3 > 10 || lado4 < 0 || lado4 > 10) {
 			throw new IllegalArgumentException("ERRO: O lado não pode ser menor que zero ou maior que 10.");
@@ -17,7 +17,7 @@ public class Carta {
 		this.lado2 = lado2;
 		this.lado3 = lado3;
 		this.lado4 = lado4;
-		this.tipo = "";
+		this.tipo = tipo;
 	}
 
 	public int getLado(Direcao direcao) {
