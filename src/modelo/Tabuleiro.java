@@ -63,22 +63,24 @@ public class Tabuleiro {
 	
 	public boolean estaCheio() {
 		int contador = 0;
-		for (int i = 0; i < 9; i++) {
+		for (int i = 1; i < 10; i++) {
 			Celula celula = getCelula(i);
-			if (celula != null) {
+			if (celula != null && !celula.estaVazia()) {
 				contador++;
 			}
 		}
 		
 		if (contador == 9) {
+			System.err.println("contador cheio: " + contador);
 			return true;
 		}
+		System.err.println("contador: " + contador);
 		return false;
 	}
 	
 	public int contarCelulas(Jogador jogador) {
 		int contador = 0;
-		for (int i = 0; i < 9; i++) {
+		for (int i = 1; i < 10; i++) {
 			Celula celula = getCelula(i);
 			if (celula != null && celula.getDono().equals(jogador)) {
 				contador++;
@@ -90,11 +92,13 @@ public class Tabuleiro {
 	
 	private int linha(int posicao) {
 		int linha = (posicao - 1) / 3;
+		System.out.println(" Linha: " + linha);
 		return linha;
 	}
 	
 	private int coluna(int posicao) {
 		int coluna = (posicao - 1) % 3;
+		System.out.println(" Coluna: " + coluna);
 		return coluna;
 	}
 }
