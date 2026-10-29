@@ -7,22 +7,21 @@ public class DesenhoCarta {
 	private static final int LARGURA = 13;
 	private static final String BORDA = "+-------------+";
 	
-	public static String desenhar(Carta carta) {
+	public static String[] desenhar(Carta carta) {
 		String cima = converteValor(carta.getLado(Direcao.CIMA));
 		String baixo = converteValor(carta.getLado(Direcao.BAIXO));
 		String esquerda = converteValor(carta.getLado(Direcao.ESQUERDA));
 		String direita = converteValor(carta.getLado(Direcao.DIREITA));
 
-		String cartaImpressa = 
-			BORDA +
-			"\n|" + centralizar(carta.getNome()) + "|" +
-			"\n|      " + cima + "      |" +
-			"\n|    " + esquerda + "   " + direita + "    | "+
-			"\n|      " + baixo + "      |" +
-			"\n|" + centralizar(carta.getTipo()) + "|" +
-			"\n" + BORDA;
-		
-		return cartaImpressa;
+		return new String[] { 
+			BORDA, 
+			"|" + centralizar(carta.getNome()) + "|",
+			"|      " + cima + "      |",
+			"|    " + esquerda + "   " + direita + "    |",
+			"|      " + baixo + "      |",
+			"|" + centralizar(carta.getTipo()) + "|",
+			BORDA
+		};
 	}
 	
 	private static String converteValor(int lado) {
@@ -58,6 +57,8 @@ public class DesenhoCarta {
 	}
 	
 	public static void imprimir(Carta carta) {
-		System.out.println(desenhar(carta));
+		for (String linha : desenhar(carta)) {
+			System.out.println(linha);
+		}
 	}
 }
