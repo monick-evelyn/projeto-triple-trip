@@ -105,7 +105,7 @@ public class LeitorCSV {
 		if (cima < 0 || baixo < 0 || esquerda < 0 || direita < 0) {
 			throw new IllegalArgumentException("Faltou algum dos 4 lados");
 		}
-		return new Carta(nome, cima, baixo, esquerda, direita, tipo);
+		return new Carta(nome, cima, direita, baixo, esquerda, tipo);
 	}
 
 	private static int converterValor(String texto) {
