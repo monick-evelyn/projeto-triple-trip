@@ -9,7 +9,7 @@ public class Celula {
 		this.dono = null;
 	}
 	
-	public void colocar(Carta carta, Jogador dono) {
+	public void ocupar(Carta carta, Jogador dono) {
 		if (!estaVazia()) {
 			throw new IllegalStateException("Carta não está vazia.");
 		}
