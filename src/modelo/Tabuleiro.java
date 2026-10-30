@@ -71,10 +71,8 @@ public class Tabuleiro {
 		}
 
 		if (contador == 9) {
-			System.err.println("contador cheio: " + contador);
 			return true;
 		}
-		System.err.println("contador: " + contador);
 		return false;
 	}
 
@@ -92,13 +90,11 @@ public class Tabuleiro {
 
 	private int linha(int posicao) {
 		int linha = (posicao - 1) / 3;
-		System.out.println(" Linha: " + linha);
 		return linha;
 	}
 
 	private int coluna(int posicao) {
 		int coluna = (posicao - 1) % 3;
-		System.out.println(" Coluna: " + coluna);
 		return coluna;
 	}
 
