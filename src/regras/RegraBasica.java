@@ -30,7 +30,7 @@ public class RegraBasica implements Regra {
 			if (posicaoVizinha != Direcao.FORA) {
 				Celula celulaVizinha = tabuleiro.getCelula(posicaoVizinha);
 				
-				if (!celulaVizinha.estaVazia() || celulaVizinha.getDono() != dono) {
+				if (!celulaVizinha.estaVazia() && celulaVizinha.getDono() != dono) {
 					if (carta.getLado(direcao) > celulaVizinha.getCarta().getLado(direcao.oposta())) {
 						celulasCapturadas.add(posicaoVizinha);
 					}
