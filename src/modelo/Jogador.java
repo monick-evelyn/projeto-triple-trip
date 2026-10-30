@@ -1,6 +1,5 @@
 package modelo;
 
-//Ctrl + Shift + F.
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,6 +56,14 @@ public class Jogador {
 		}
 		Carta carta = mao.remove(indice);
 		return carta;
+	}
+	
+	public void ganharPonto() {
+	    pontos++;
+	}
+
+	public void perderPonto() {
+	    pontos--;
 	}
 
 }
