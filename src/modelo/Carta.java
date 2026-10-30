@@ -51,4 +51,5 @@ public class Carta {
 	public String getTipo() {
 		return tipo;
 	}
+
 }

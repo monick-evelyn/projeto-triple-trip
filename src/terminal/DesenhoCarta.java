@@ -23,13 +23,8 @@ public class DesenhoCarta {
 		String linhaVazia = "|" + espacoLado(LARGURA, "") + "|";
 		String linhaInterrogacao = "|" + centralizar("?") + "|";
 
-		return BORDA 
-				+ "\n" + linhaVazia 
-				+ "\n" + linhaVazia 
-				+ "\n" + linhaInterrogacao 
-				+ "\n" + linhaVazia 
-				+ "\n" + linhaVazia + "\n" 
-				+ BORDA;
+		return BORDA + "\n" + linhaVazia + "\n" + linhaVazia + "\n" + linhaInterrogacao + "\n" + linhaVazia + "\n"
+				+ linhaVazia + "\n" + BORDA;
 	}
 
 	private static String converteValor(int lado) {
