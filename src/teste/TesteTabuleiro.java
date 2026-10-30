@@ -160,6 +160,21 @@ public class TesteTabuleiro {
 		} catch (Exception e) {
 			verificar("Canto: captura sem erro de posição", false);
 		}
+		
+		// 7.7 Captura nas quatro direções
+		Jogador a7 = new Jogador("A");
+		Jogador b7 = new Jogador("B");
+		Tabuleiro t7 = new Tabuleiro();
+		t7.colocarCarta(2, new Carta("Cima", 1, 1, 2, 1, "NEUTRAL"), a7);     // baixo = 2
+		t7.colocarCarta(8, new Carta("Baixo", 2, 1, 1, 1, "NEUTRAL"), a7);    // cima = 2
+		t7.colocarCarta(4, new Carta("Esq", 1, 2, 1, 1, "NEUTRAL"), a7);      // direita = 2
+		t7.colocarCarta(6, new Carta("Dir", 1, 1, 1, 2, "NEUTRAL"), a7);      // esquerda = 2
+		t7.colocarCarta(5, new Carta("Centro", 5, 5, 5, 5, "NEUTRAL"), b7);
+		verificar("Quatro direções: retorna 4", t7.capturar(5) == 4);
+		verificar("Quatro direções: posições 2, 4, 6 e 8 passam a ser do B",
+		        t7.getCelula(2).getDono() == b7 && t7.getCelula(4).getDono() == b7
+		        && t7.getCelula(6).getDono() == b7 && t7.getCelula(8).getDono() == b7);
+		verificar("Quatro direções: B fica com 9 e A com 1", b7.getPontos() == 9 && a7.getPontos() == 1);
 	}
 
 	private static void verificar(String descricao, boolean passou) {
