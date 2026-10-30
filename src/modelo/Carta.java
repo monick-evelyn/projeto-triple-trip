@@ -9,10 +9,12 @@ public class Carta {
 	private int lado4; // esquerda
 
 	public Carta(String nome, int lado1, int lado2, int lado3, int lado4, String tipo) {
+		validarLado(lado1);
+		validarLado(lado2);
+		validarLado(lado3);
+		validarLado(lado4);
+		
 		this.nome = nome;
-		if (lado1 < 0 || lado1 > 10 || lado2 < 0 || lado2 > 10 || lado3 < 0 || lado3 > 10 || lado4 < 0 || lado4 > 10) {
-			throw new IllegalArgumentException("ERRO: O lado não pode ser menor que zero ou maior que 10.");
-		}
 		this.lado1 = lado1;
 		this.lado2 = lado2;
 		this.lado3 = lado3;
@@ -21,10 +23,12 @@ public class Carta {
 	}
 	
 	public Carta(String nome, int lado1, int lado2, int lado3, int lado4) {
+		validarLado(lado1);
+		validarLado(lado2);
+		validarLado(lado3);
+		validarLado(lado4);
+		
 		this.nome = nome;
-		if (lado1 < 0 || lado1 > 10 || lado2 < 0 || lado2 > 10 || lado3 < 0 || lado3 > 10 || lado4 < 0 || lado4 > 10) {
-			throw new IllegalArgumentException("ERRO: O lado não pode ser menor que zero ou maior que 10.");
-		}
 		this.lado1 = lado1;
 		this.lado2 = lado2;
 		this.lado3 = lado3;
@@ -42,6 +46,12 @@ public class Carta {
 			return lado4;
 		}
 		throw new IllegalArgumentException("ERRO: Não existe um lado para essa direção");
+	}
+	
+	private void validarLado(int lado) {
+		if (lado < 0 || lado > 10) {
+			throw new IllegalArgumentException("ERRO: O lado deve ser um número de 0 a 10.");
+		}
 	}
 
 	public String getNome() {

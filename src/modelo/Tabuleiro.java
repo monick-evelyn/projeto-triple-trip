@@ -71,10 +71,8 @@ public class Tabuleiro {
 		}
 
 		if (contador == 9) {
-			System.err.println("contador cheio: " + contador);
 			return true;
 		}
-		System.err.println("contador: " + contador);
 		return false;
 	}
 
@@ -92,13 +90,53 @@ public class Tabuleiro {
 
 	private int linha(int posicao) {
 		int linha = (posicao - 1) / 3;
-		System.out.println(" Linha: " + linha);
 		return linha;
 	}
 
 	private int coluna(int posicao) {
 		int coluna = (posicao - 1) % 3;
-		System.out.println(" Coluna: " + coluna);
 		return coluna;
 	}
+
+	// Captura Básica
+	public int capturar(int posicao) throws Exception {
+		Celula celulaAtual = getCelula(posicao);
+
+		if (celulaAtual.estaVazia() || celulaAtual == null) {
+			throw new Exception("A célula está vazia.");
+		}
+
+		Carta carta = celulaAtual.getCarta();
+		Jogador dono = celulaAtual.getDono();
+		
+		if (carta == null || dono == null) {
+			throw new Exception("A célula está incompleta.");
+		}
+		
+		int celulasCapturadas = 0;
+		Map<Direcao, Celula> celulasVizinhas = getVizinhas(posicao);
+
+		for (Map.Entry<Direcao, Celula> entrada : celulasVizinhas.entrySet()) {
+			Direcao direcao = entrada.getKey();
+			Celula vizinha = entrada.getValue();
+
+			if (vizinha.getDono() != dono) {
+				int ladoCarta  = carta.getLado(direcao); //lado direito
+				int ladoVizinha = vizinha.getCarta().getLado(direcao.oposta()); //lado esquerdo
+
+				if (ladoCarta > ladoVizinha) {
+					Jogador antigoDono = vizinha.getDono();
+					
+					vizinha.trocarDono(dono);
+					
+					dono.ganharPonto();
+					antigoDono.perderPonto();
+					
+					celulasCapturadas++;
+				}
+			}
+		}
+		return celulasCapturadas;
+	}
+
 }
