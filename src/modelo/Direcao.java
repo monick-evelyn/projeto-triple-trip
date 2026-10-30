@@ -32,4 +32,5 @@ public enum Direcao {
 		return deslocamentoColuna;
 	}
 
+
 }
