@@ -31,6 +31,17 @@ public enum Direcao {
 	public int getDeslocamentoColuna() {
 		return deslocamentoColuna;
 	}
+	
+	public static final int FORA = 0;
 
+	public int getPosicaoVizinha(int posicao) {
+		int linha = (posicao - 1) / 3 + deslocamentoLinha;
+		int coluna = (posicao - 1) % 3 + deslocamentoColuna;
+
+		if (linha < 0 || linha > 2 || coluna < 0 || coluna > 2) {
+			return FORA;
+		}
+		return linha * 3 + coluna + 1;
+	}
 
 }

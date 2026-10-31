@@ -119,7 +119,7 @@ public class Tabuleiro {
 		for (Map.Entry<Direcao, Celula> entrada : celulasVizinhas.entrySet()) {
 			Direcao direcao = entrada.getKey();
 			Celula vizinha = entrada.getValue();
-
+			
 			if (vizinha.getDono() != dono) {
 				int ladoCarta  = carta.getLado(direcao); //lado direito
 				int ladoVizinha = vizinha.getCarta().getLado(direcao.oposta()); //lado esquerdo
