@@ -56,11 +56,7 @@ public class MotorDeCaptura {
 	}
 
 	private void trocarDonos(Tabuleiro tabuleiro, Set<Integer> capturadas, Jogador jogador) {
-		for (int capturada : capturadas) {
-			if (tabuleiro.getCelula(capturada).getDono() == jogador) {
-				capturadas.remove(capturada);
-			}
-		}
+		capturadas.removeIf(capturada -> tabuleiro.getCelula(capturada).getDono() == jogador);
 
 		for (int capturada : capturadas) {
 			trocarDono(tabuleiro.getCelula(capturada), jogador);
