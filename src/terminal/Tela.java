@@ -8,6 +8,7 @@ import modelo.Jogador;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import jogo.ConfiguracoesRegras;
 
 public class Tela {
 	private static final Scanner leitor=new Scanner(System.in);
@@ -178,24 +179,93 @@ public class Tela {
 			System.out.println();
 		}
 	}
-	
+
 	public static void telaDeTroca(Jogador proximo) {
 		limpar();
-		System.out.println("Jogador da vez: "+proximo.getNome());
+		System.out.println("Jogador da vez: " + proximo.getNome());
 		System.out.println("Pressione Enter para continuar...");
-		
+
 		leitor.nextLine();
 	}
-	
+
 	public static void mostrarMenu() {
-		    System.out.println("+--------------------------------------------------+");
-		    System.out.println("|                   TRIPLE TRIAD                   |");
-		    System.out.println("|==================================================|");
-		    System.out.println("|  [1] Iniciar jogo                                |");
-		    System.out.println("|  [2] Consultar regras                            |");
-		    System.out.println("|  [3] Ver instruções do jogo                      |");
-		    System.out.println("|  [4] Sair                                        |");
-		    System.out.println("+--------------------------------------------------+");
+		System.out.println("+--------------------------------------------------+");
+		System.out.println("|                   TRIPLE TRIAD                   |");
+		System.out.println("|==================================================|");
+		System.out.println("|  [1] Iniciar jogo                                |");
+		System.out.println("|  [2] Consultar regras                            |");
+		System.out.println("|  [3] Ver instruções do jogo                      |");
+		System.out.println("|  [4] Sair                                        |");
+		System.out.println("+--------------------------------------------------+");
+	}
+
+	public static String[] juntarLadoALado(List<String[]> blocos) {
+		int quantidadeLinhas = blocos.get(0).length;
+		String[] resultado = new String[quantidadeLinhas];
+
+		for (int linha = 0; linha < quantidadeLinhas; linha++) {
+			String linhaCompleta = "";
+			for (int i = 0; i < blocos.size(); i++) {
+				linhaCompleta += blocos.get(i)[linha] + " ";
+			}
+			resultado[linha] = linhaCompleta;
+		}
+		return resultado;
+	}
+
+	public static void mostrarRegras(ConfiguracoesRegras regras) {
+		System.out.println(
+				"======================================== REGRAS ATIVAS ========================================");
+		if (regras.isSame()) {
+			System.out.println("[ SAME ]");
+			System.out.println(
+					"• Se 2 ou mais lados encostados forem iguais, as cartas adversárias envolvidas são capturadas.\n");
+		} else if (regras.isPlus()) {
+			System.out.println("[ PLUS ]");
+			System.out.println(
+					"• Se 2 ou mais pares de lados encostados tiverem a mesma soma, as cartas são capturadas.\n");
+		} else if (regras.isCombo()) {
+			System.out.println("[ COMBO ]");
+			System.out.println("• Cartas recém-capturadas capturam vizinhas mais fracas, em cadeia.\n");
+		} else if (regras.isThreeOpen()) {
+			System.out.println("[ THREE OPEN ]");
+			System.out.println("• Três cartas da mão de cada jogador ficam visíveis ao oponente.\n");
+		}
+		System.out.println(
+				"===============================================================================================");
+	}
+
+	public static void mostrarJogada(String nome, int capturas, List<String> regras, int emCadeia) {
+		String mostrarCapturas = "";
+		for (int i = 0; i < regras.size(); i++) {
+			if (i > 0) {
+				mostrarCapturas += ", ";
+			}
+			mostrarCapturas += regras.get(i);
+		}
+		System.out.println(
+				"======================================== JOGADA ATUAL ========================================");
+		System.out.println("Nome: " + nome + " capturou " + capturas + " cartas (" + mostrarCapturas + "!)");
+		System.out.println("Capturas em cadeia: " + emCadeia);
+		System.out.println(
+				"==============================================================================================");
+	}
+
+	public static void mostrarResultado(Tabuleiro t, Jogador j1, Jogador j2) {
+		int pontosJ1 = j1.getPontos();
+		int pontosJ2 = j2.getPontos();
+		System.out
+				.println("======================================== RESULTADO ========================================");
+		desenharTabuleiro(t, j1, j2);
+		if (pontosJ1 > pontosJ2) {
+			System.out.println("Parabénss " + j1.getNome() + " você ganhou esta rodada!");
+		} else if (pontosJ1 == pontosJ2) {
+			System.out.println("Parabénss vocês dois empataram!!");
+		} else {
+			System.out.println("Parabénss " + j2.getNome() + " você ganhou esta rodada!");
+		}
+		System.out
+				.println("===========================================================================================");
 	}
 
 }
