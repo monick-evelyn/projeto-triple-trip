@@ -8,6 +8,8 @@ import terminal.Tela;
 import java.util.ArrayList;
 import java.util.List;
 
+import jogo.ConfiguracoesRegras;
+
 public class TesteTela {
 
 	public static void main(String[] args) {
@@ -44,8 +46,18 @@ public class TesteTela {
 		//Tela.desenharMaoOponente(j2, false);
 		//Tela.limpar();
 		//Tela.desenharPlacar(j1, j2);
-		Tela.mostrarMenu();
-		Tela.telaDeTroca(j2);
+		//Tela.mostrarMenu();
+		//Tela.telaDeTroca(j2);
+		//ConfiguracoesRegras regras1=new ConfiguracoesRegras();
+		//Tela.mostrarRegras(regras1);
+		//List<String> regras = new ArrayList<>();
+		//regras.add("Same");
+		//regras.add("Plus");
+
+		//Tela.mostrarJogada("Ana", 2, regras, 1);
+		Tela.mostrarResultado(tabuleiro, j1, j2);
+
+		
 		
 	}
 
